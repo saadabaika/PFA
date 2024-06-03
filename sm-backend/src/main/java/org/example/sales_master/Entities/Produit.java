@@ -26,8 +26,7 @@ public class Produit {
     @JsonBackReference
     private Set<LigneDeVente> ligneDeVente = new HashSet<>();
 
-    @ManyToOne
-    private Utilisateur utilisateur;
+
 
 
 

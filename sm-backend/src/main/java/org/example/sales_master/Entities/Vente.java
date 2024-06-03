@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +17,7 @@ public class Vente {
     @Id
     @GeneratedValue
     private Long VenteID;
-    private Date DateVente;
+    private LocalDate DateVente;
     private String Statut;
     private Double Total;
 
@@ -33,6 +34,5 @@ public class Vente {
     List<LigneDeVente> ligneDeVentes = new ArrayList<>();
 
 
-    @ManyToOne
-    private Utilisateur utilisateur;
+
 }

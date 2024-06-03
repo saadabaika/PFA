@@ -1,13 +1,44 @@
 // Home.jsx
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { fetchProducts ,fetchClients,getProduitsStockFaible} from './services/api';
 import { Link } from 'react-router-dom';
 import './App.css';
 import { BsFillArchiveFill, BsPeopleFill, BsFillBellFill,BsGraphUp } from 'react-icons/bs';
 import { ResponsiveContainer, BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, Legend, LineChart, Line } from 'recharts';
+import ProductsList from './components/ProductsList';
 
 function Home() {
+    const [productCount, setProductCount] = useState(0); 
+    const [clientCount, setClientCount] = useState(0); 
+    const [alertCount, setAlertCount] = useState(0); 
+    const [products, setProducts] = useState([]); 
+    const [clients, setClients] = useState([]); 
+    const [alerts, setAlerts] = useState([]); 
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const productResponse = await fetchProducts();
+                setProducts(productResponse.data); 
+                setProductCount(productResponse.data.length); 
+
+                const clientResponse = await fetchClients();
+                setClients(clientResponse.data); 
+                setClientCount(clientResponse.data.length); 
+
+                const alertResponse = await getProduitsStockFaible();
+                console.log('Alert Response:', alertResponse); // Debugging log
+                if (alertResponse) {
+                    setAlerts(alertResponse); 
+                    setAlertCount(alertResponse.length); 
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
     const data = [
         { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
         { name: 'Page B', uv: 3000, pv: 1398, amt: 2210 },
@@ -31,7 +62,7 @@ function Home() {
                         <h3>PRODUCTS</h3>
                         <BsFillArchiveFill className='card_icon'/>
                     </div>
-                    <h1>4</h1>
+                    <h1>{productCount}</h1>
                     </Link>
 
                 </div>
@@ -41,7 +72,7 @@ function Home() {
                         <h3>CUSTOMERS</h3>
                         <BsPeopleFill className='card_icon'/>
                     </div>
-                    <h1>5</h1>
+                    <h1>{clientCount}</h1>
                     </Link>
 
                 </div>
@@ -52,12 +83,11 @@ function Home() {
                             <h3>ALERTS</h3>
                             <BsFillBellFill className='card_icon'/>
                         </div>
-                       <h1>3</h1>
-
+                        <h1>{alertCount}</h1>
                     </Link>
                 </div>
                 <div>
-                    <Link to="/AlertProduct" className='card'>
+                    <Link to="/report" className='card'>
                         <div className='card-inner'>
                             <h3>REPORT</h3>
                             <BsGraphUp className='card_icon'/>

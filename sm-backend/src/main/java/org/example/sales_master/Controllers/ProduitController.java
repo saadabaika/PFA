@@ -21,33 +21,14 @@ import java.util.List;
 public class ProduitController {
     @Autowired
     private ProduitService produitService;
-    private static final String UPLOAD_DIR = "/path/to/your/upload/directory/";
 
     @PostMapping("/create")
-    public ResponseEntity<String> add(
-            @RequestParam("nom") String nom,
-            @RequestParam("description") String description,
-            @RequestParam("prix") Double prix,
-            @RequestParam("quantiteEnStock") String quantiteEnStockStr,
-            @RequestParam("image") MultipartFile image) {
-
+    public  ResponseEntity<Produit> add(@RequestBody Produit produit) {
         try {
-            int quantiteEnStock = Integer.parseInt(quantiteEnStockStr); // Convertir la chaîne en entier
-
-            // Créer l'objet Produit avec les données reçues
-            Produit produit = new Produit();
-            produit.setNom(nom);
-            produit.setDescription(description);
-            produit.setPrix(prix);
-            produit.setQuantiteEnStock(quantiteEnStock);
-            // Gérer le fichier image ici si nécessaire
-
-            // Enregistrer le produit dans la base de données
-            produitService.saveProduit(produit);
-
-            return ResponseEntity.status(HttpStatus.CREATED).body("Produit créé avec succès!");
-        } catch (NumberFormatException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("La quantité en stock doit être un nombre entier valide.");
+            Produit savedProduit = produitService.saveProduit(produit);
+            return new ResponseEntity<>(savedProduit, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping

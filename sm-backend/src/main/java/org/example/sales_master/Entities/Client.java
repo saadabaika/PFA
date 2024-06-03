@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Data
-public class  Client {
+public class Client {
     @Id
     @GeneratedValue
     private Long ClientID;
@@ -18,9 +18,8 @@ public class  Client {
     private String Email;
     private String Telephone;
     private String HistoriqueAchats;
-    @OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     @JsonIgnore
-    private List<Vente>ventes=new ArrayList<>();
-    @ManyToOne
-    private Utilisateur utilisateur;
+    private List<Vente> ventes = new ArrayList<>();
+
 }

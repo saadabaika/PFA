@@ -26,7 +26,7 @@ function CreateVente() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const venteData = { dateVente, statut, total, clientId };
+      const venteData = { dateVente, statut, total, client: { clientID: clientId } };
       console.log('Vente Data to be sent:', venteData); // Log the data before sending
       const newVente = await createVente(venteData); // Envoyez la requête POST pour créer la vente
       console.log('Vente créée avec succès:', newVente);
@@ -58,7 +58,7 @@ function CreateVente() {
           <select value={clientId} onChange={(e) => setClientId(e.target.value)}>
             <option value="">Sélectionner un client</option>
             {clients.map(client => (
-              <option key={client.id} value={client.id}>{client.nom}</option>
+              <option key={client.clientID} value={client.clientID}>{client.nom}</option>
             ))}
           </select>
         </div>

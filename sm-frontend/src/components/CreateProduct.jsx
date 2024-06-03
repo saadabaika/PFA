@@ -7,8 +7,7 @@ const CreateProduct = () => {
         description: "",
         prix: "",
         quantiteEnStock: "",
-        adresse: "",
-        image: null,
+        imagePath: "",  // Notez le changement de "image" à "imagePath"
     });
 
     const handleChange = (event) => {
@@ -16,24 +15,15 @@ const CreateProduct = () => {
         setProduit({ ...produit, [name]: value });
     };
 
-    const handleImageChange = (event) => {
-        const file = event.target.files[0];
-        setProduit({ ...produit, image: file });
+    const handleImagePathChange = (event) => {
+        const { value } = event.target;
+        setProduit({ ...produit, imagePath: value });
     };
 
     const handleSubmitProd = async (event) => {
         event.preventDefault();
-        const formData = new FormData();
-        formData.append('nom', produit.nom);
-        formData.append('description', produit.description);
-        formData.append('prix', produit.prix);
-        formData.append('quantiteEnStock', produit.quantiteEnStock);
-        formData.append('adresse', produit.adresse);
-        if (produit.image) {
-            formData.append('image', produit.image);
-        }
         try {
-            await createProductApi(formData);
+            await createProductApi(produit);
             alert('Produit créé avec succès!');
         } catch (error) {
             console.error('Erreur lors de la création du produit:', error);
@@ -93,13 +83,14 @@ const CreateProduct = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="image">Image :</label>
+                    <label htmlFor="imagePath">Chemin d'accès de l'image :</label>
                     <input
-                        type="file"
-                        id="image"
-                        name="image"
-                        onChange={handleImageChange}
-                        accept="image/*"
+                        type="text"
+                        id="imagePath"
+                        name="imagePath"
+                        value={produit.imagePath}
+                        onChange={handleImagePathChange}
+                        placeholder="Entrez le chemin de l'image"
                         required
                     />
                 </div>

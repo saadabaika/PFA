@@ -117,3 +117,58 @@ export const createVente = async (venteData) => {
     throw error;
   }
 };
+export const login = async (loginData) => {
+  try {
+      const response = await axios.post(`${BASE_URL}/api/auth/login`, loginData, {
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      });
+      return response.data;
+  } catch (error) {
+      throw error;
+  }
+};
+export const fetchSalesReport = async (startDate, endDate) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/api/reports/sales`, {
+      params: { startDate, endDate }
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchTopSellingProducts = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/api/reports/top-products`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchTopClients = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/api/reports/top-clients`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};export const fetchHistoriqueProduitsClient = async (clientId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/api/clients/${clientId}/historique-produits`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const fetchClientById = async (id) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/api/clients/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Service
 public class PdfGenerationLigneService {
@@ -31,12 +32,12 @@ public class PdfGenerationLigneService {
 
             // Formatter la date
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String formattedDate = dateFormat.format(ligneDeVente.getVente().getDateVente());
+            String formattedDate = dateFormat.format(new Date());
 
             // Informations sur la facture
             Paragraph header = new Paragraph()
                     .add("Facture N°: " + ligneDeVente.getLigneDeVenteID() + "\n")
-                    .add("Date: " + formattedDate + "\n")
+                   .add("Date: " + formattedDate + "\n")
                     .setTextAlignment(TextAlignment.RIGHT)
                     .setFontSize(12);
 
@@ -58,7 +59,7 @@ public class PdfGenerationLigneService {
             Table clientTable = new Table(2);
             clientTable.addCell("Client:");
             clientTable.addCell(ligneDeVente.getVente().getClient().getNom());
-            clientTable.addCell("Telephone:");
+            clientTable.addCell( "Telephone:");
             clientTable.addCell(ligneDeVente.getVente().getClient().getTelephone());
             clientTable.addCell("Email:");
             clientTable.addCell(ligneDeVente.getVente().getClient().getEmail());

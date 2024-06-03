@@ -42,7 +42,7 @@ public class ProduitServiceImpl implements ProduitService {
         produitRepository.deleteById(id);
     }
 
-    private static final int seuilStockBas = 15;
+    private static final int seuilStockBas = 10;
 
 
     public List<Produit> getProduitsStockFaible() {

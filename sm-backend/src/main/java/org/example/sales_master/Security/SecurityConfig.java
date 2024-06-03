@@ -38,13 +38,16 @@ private CustomUserDetailsService userDetailsService;
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers(POST,"/api/auth/**").permitAll()
-                        .requestMatchers(GET,"/api/clients","/api/courses/clients/{id}").permitAll()
-                        .requestMatchers(GET,"/api/produits").permitAll()
-                        .requestMatchers(POST,"/api/ventes").permitAll()
-                        .requestMatchers(GET,"/api/ventes").permitAll()
-                        .requestMatchers(GET,"/api/ventes").permitAll()
-                        .requestMatchers(GET,"/api/lignesdevente/all").permitAll()
-                        .requestMatchers(GET,"/api/lignesdevente/{id}/pdf").permitAll()
+                        .requestMatchers(GET,"/**").permitAll()
+                        .requestMatchers(DELETE,"/**").permitAll()
+                        .requestMatchers(POST,"/**").permitAll()
+                        .requestMatchers(PUT,"/**").permitAll()
+
+                        .requestMatchers(GET,"/api/reports/**").permitAll()
+
+
+
+
 
                         .anyRequest().authenticated()
 

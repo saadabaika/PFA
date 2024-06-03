@@ -18,6 +18,7 @@ const ClientList = () => {
 
     fetchData();
   }, [filterName]);
+
   const handleFilterChange = event => {
     setFilterName(event.target.value);
   };
@@ -33,7 +34,7 @@ const ClientList = () => {
 
   return (
     <div className="Clients">
-      <h1 className="profile-title">Profile Clients</h1>
+      <h1 className="profile-title"></h1>
       <div className="button-container">
         <div className="search-container">
           <input
@@ -48,27 +49,23 @@ const ClientList = () => {
         <Link to="/CreateClient" className="create-client-button">Add User</Link>
       </div>
       <div className="card-container">
-
         {clients.map((client) => (
           <div key={client.clientID} className="client-card">
-            <h2>{client.nom}</h2>
-
-            <p><strong>Adresse:</strong> {client.adresse}</p>
-            <p><strong>Email:</strong> {client.email}</p>
-            <p><strong>Téléphone:</strong> {client.telephone}</p>
+            <Link to={`/clients/${client.clientID}/historique`} className="client-link">
+              <h2>{client.nom}</h2>
+              <p><strong>Adresse:</strong> {client.adresse}</p>
+              <p><strong>Email:</strong> {client.email}</p>
+              <p><strong>Téléphone:</strong> {client.telephone}</p>
+            </Link>
             <div className="button-div">
               <a onClick={() => handleDelete(client.clientID)} className="custom-button">Delete</a>
-              <Link to={`/clients/${client.clientID}`} className="custom-button">update</Link>
+              <Link to={`/clients/${client.clientID}`} className="custom-button">Update</Link>
             </div>
           </div>
-
         ))}
       </div>
     </div>
-
-
   );
-
 };
 
 export default ClientList;

@@ -25,16 +25,5 @@ public class Utilisateur {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     @JsonManagedReference
     private List<Role> roles = new ArrayList<>();
-    @ManyToOne
-    private Produit produit;
-    @OneToMany(mappedBy = "utilisateur",fetch = FetchType.LAZY)
-    private List<Vente> ventes = new ArrayList<>();
-
-    @OneToMany(mappedBy = "utilisateur")
-    private List<Produit> produits = new ArrayList<>();
-
-    @OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY)
-    private List<Client> clients;
-
 
 }

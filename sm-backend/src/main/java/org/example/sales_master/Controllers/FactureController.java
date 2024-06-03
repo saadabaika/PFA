@@ -2,7 +2,7 @@ package org.example.sales_master.Controllers;
 
 import org.example.sales_master.Entities.Facture;
 import org.example.sales_master.services.FactureService;
-import org.example.sales_master.services.PdfGenerationService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -47,18 +47,5 @@ public class FactureController {
         List<Facture> factures = factureService.getAllFactures();
         return ResponseEntity.ok(factures);
     }
-    @Autowired
-    private PdfGenerationService pdfGenerationService;
 
-    // Vos autres méthodes de contrôleur...
-
-    @GetMapping("/{id}/pdf")
-    public ResponseEntity<byte[]> generatePdfForFacture(@PathVariable Long id) {
-        Facture facture = factureService.getFactureById(id);
-        byte[] pdfBytes = pdfGenerationService.generatePdf(facture);
-        // Renvoyer le PDF en tant que réponse HTTP
-        return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(pdfBytes);
-    }
 }

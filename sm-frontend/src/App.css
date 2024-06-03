@@ -169,6 +169,10 @@ body {
   margin-top: 60px;
   height: 300px;
 }
+.client-link {
+  color: #9e9ea4;
+  text-decoration: none;
+}
 form{
   display: grid;
 }
@@ -232,13 +236,14 @@ form{
 
 .client-card {
   /* Style de la carte individuelle (comme avant) */
-  background-color:rgba(0, 0, 0, 0.2);;
+  background-color:#263043;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin: 15px;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 25px;
   width:calc(33.33% - 40px);; /* Largeur de la carte (1/3 de la largeur du conteneur) */
   text-align: center;
+
   transition: transform 0.3s ease;
 }
 .client-card:hover {
@@ -261,12 +266,16 @@ form{
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
+  border-radius: 20px;
+  margin-left: 25px;
+  margin-right: 25px;
+
 }
 
 .create-client-button {
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   background-color: #2957a8;
   color: #ffffff;
   text-decoration: none;
@@ -280,7 +289,7 @@ form{
   color: white; /* Couleur du texte */
   padding: 10px 20px; /* Espacement interne */
   border: none; /* Pas de bordure */
-  border-radius: 5px; /* Bordure arrondie */
+  border-radius: 20px; /* Bordure arrondie */
   cursor: pointer; /* Curseur au survol */
   margin-right: 10px; /* Espacement entre les boutons */
   width: 100px; /* Largeur fixe */
@@ -288,6 +297,8 @@ form{
   margin-right: 25px;
   margin-left: 25px;
   text-decoration: none;
+ 
+
 }
 
 .custom-button:hover {
@@ -319,7 +330,7 @@ form{
   font-size: 38px;
   color: rgba(255, 255, 255, 0.95);
   text-align: center;
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: bold;
@@ -632,6 +643,172 @@ tbody tr:hover {
 }
 .button-div{
   display: flex;
+}
+
+.login-container {
+  position: absolute;
+  top: 50%; /* Centrer verticalement */
+  left: 50%; /* Centrer horizontalement */
+  transform: translate(-50%, -50%);
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form input {
+  margin-bottom: 20px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+}
+
+.login-form button {
+  padding: 10px 15px;
+  background-color: #2957a8;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+  background-color: #0056b3;
+}
+
+
+/* Animation pour le formulaire de connexion */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-form {
+  animation: slideIn 0.5s ease;
+}
+
+
+
+/* Styles pour l'ensemble de la page */
+
+.report-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #1d2634; /* Ajustez la couleur d'arrière-plan selon votre thème */
+}
+
+.sales-report-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.chart {
+  margin: 20px;
+  flex: 1;
+}
+
+.date-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 20px; /* Ajoute une marge autour du formulaire */
+  padding: 20px;
+  border: 3px solid #3498db; /* Ajoute un cadre solide de 2px avec la couleur #3498db */
+  border-radius: 5px; /* Ajoute des coins arrondis */
+
+
+}
+
+.date-form label {
+  margin-bottom: 10px;
+  color: #ecf0f1; /* Couleur du texte pour contraster avec le fond sombre */
+}
+
+.date-form input {
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.date-form button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #3498db; /* Couleur du bouton */
+  color: #fff; /* Couleur du texte du bouton */
+  border: none;
+  border-radius: 35px;
+  cursor: pointer;
+  
+}
+
+.charts-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.chart h2 {
+  color: #ecf0f1; /* Couleur du texte des titres */
+}
+
+/* Historique.css */
+.historique-container {
+  margin: 60px;
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 70px;
+  background-color: #f9f9f9;
+}
+
+.historique-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.historique-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.historique-item {
+  margin-bottom: 15px;
+  padding: 10px;
+  margin: 30px;
+  border-bottom: 1px solid #ddd;
+}
+
+.historique-item p {
+  margin: 5px 0;
+}
+
+.historique-item strong {
+  color: black;
+  font-weight: bold;
 }
 
 /* End Main  */

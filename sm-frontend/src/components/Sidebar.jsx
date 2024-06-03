@@ -2,7 +2,7 @@ import React from 'react'
 
 import 
 {BsCart3, BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, 
-  BsListCheck, BsMenuButtonWideFill, BsFillGearFill, BsFillBagFill, BsCheckCircleFill }
+  BsListCheck, BsMenuButtonWideFill, BsFillGearFill,BsGraphUp, BsFillBagFill, BsCheckCircleFill }
  from 'react-icons/bs'
 
 import { Link } from 'react-router-dom'; 
@@ -45,9 +45,11 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                 </a>
             </li>
             <li className='sidebar-list-item'>
-                <a href="">
-                    <BsMenuButtonWideFill className='icon'/> Reports
+                <a href="/report">
+                   
+                     <BsGraphUp className='icon'/> Reports
                 </a>
+            
             </li>
             <li className='sidebar-list-item'>
                 <a href="">
